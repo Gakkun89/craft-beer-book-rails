@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_22_071135) do
+ActiveRecord::Schema.define(version: 2020_02_22_102344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "beer_hops", force: :cascade do |t|
+    t.bigint "beer_id"
+    t.bigint "hop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["beer_id"], name: "index_beer_hops_on_beer_id"
+    t.index ["hop_id"], name: "index_beer_hops_on_hop_id"
+  end
 
   create_table "beers", force: :cascade do |t|
     t.string "name"
@@ -27,4 +36,13 @@ ActiveRecord::Schema.define(version: 2020_02_22_071135) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "hops", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "beer_hops", "beers"
+  add_foreign_key "beer_hops", "hops"
 end

@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require "open-uri"
+
+json = open("https://sandbox-api.brewerydb.com/v2/hops/?key=#{ENV['BREWERY_API']}").read
+
+obj = JSON.parse(json)
+
+obj['data'].each do |hop|
+  desc = "No description yet" || hop['description']
+  Hop.create!(
+    name: hop['name'],
+    description: desc
+    )
+end
