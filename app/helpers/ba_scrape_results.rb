@@ -1,14 +1,14 @@
-module BAScraperResults
-  def initialize(query)
-    @url = "https://www.beeradvocate.com/search/?q=#{query}"
-    @doc = Nokogiri::HTML(open(@url))
-    @names = []
-    @descriptions = []
-    @beer_profiles = []
-  end
+require "open-uri"
+
+module BAScrapeResults
+  @names = []
+  @descriptions = []
+  @beer_profiles = []
   # Retrieve top 5 search result beer names
   # No obvious tagging so have to use  tag
-  def search_title_scrape
+  def self.search_title_scrape(query)
+    @url = "https://www.beeradvocate.com/search/?q=#{query}"
+    @doc = Nokogiri::HTML(open(@url))
     @doc.search('b')[2..6].each do |name|
       @names << name.text
     end
@@ -17,7 +17,7 @@ module BAScraperResults
   # Retrieve brewery name and style
   # Containted within a tag so able to scrape
 
-  def search_description_scrape
+  def self.search_description_scrape
     @doc.search('.muted a').first(10).each do |description|
       @descriptions << description.text
     end
@@ -25,7 +25,7 @@ module BAScraperResults
   end
 
   # Check if there are any results
-  def check_for_results
+  def self.check_for_results
     if @names[0] == "You can also try results from Google..."
       return {
         beer_1: {
@@ -41,7 +41,7 @@ module BAScraperResults
 
   # Create a hash of results with number then beer name, brewery, style and url info
 
-  def create_result_hash
+  def self.create_result_hash
     beer_profiles
     {
       beer_1: {
@@ -78,7 +78,7 @@ module BAScraperResults
   end
   # Get the url endings for each beer to make image scraping etc easier
 
-  def beer_profiles
+  def self.beer_profiles
     @profiles = []
     @raw_profiles = @doc.xpath('//div/a/@href')[5..14].map { |text| text.text.strip }
     @raw_profiles.each do |link|

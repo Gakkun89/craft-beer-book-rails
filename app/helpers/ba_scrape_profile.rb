@@ -1,5 +1,7 @@
+require "open-uri"
+
 module BAScrapeProfile
-  def initialize(url)
+  def self.initialize(url)
     @url = "https://www.beeradvocate.com/beer/shelf-talker/?b=#{url}"
     @doc = Nokogiri::HTML(open(@url))
     @rawbeer = []
@@ -10,9 +12,10 @@ module BAScrapeProfile
       style: '',
       bascore: ''
     }
+    scrape
   end
 
-  def scrape
+  def self.scrape
     @doc.search('tr').each do |tr|
       @rawbeer << tr.text.strip
     end
