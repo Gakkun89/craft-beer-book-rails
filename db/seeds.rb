@@ -12,7 +12,7 @@ json = open("https://sandbox-api.brewerydb.com/v2/hops/?key=#{ENV['BREWERY_API']
 obj = JSON.parse(json)
 
 obj['data'].each do |hop|
-  desc = "No description yet" || hop['description']
+  desc = hop['description'] || "No description yet"
   Hop.create!(
     name: hop['name'],
     description: desc
