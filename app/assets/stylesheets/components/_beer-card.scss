@@ -1,0 +1,11 @@
+.beer-card-wrapper {
+  // display: flex;
+  margin: 0 auto;
+  width: 800px;
+  justify-content: center;
+}
+.beer-card-container {
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr 1fr;
+}

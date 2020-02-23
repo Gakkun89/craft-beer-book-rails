@@ -1,0 +1,17 @@
+<div class="beer-card-wrapper">
+  <h1>Beers</h1>
+  <div class="beer-card-container">
+    <% @beers.each do |beer| %>
+      <div class="row">
+        <div class="beer-card">
+         "Image here" <!-- cl_image_tag (beer.photo.key),  height: 200, width: 150  -->
+         <div class="beer-card-details">
+           <h3><%= link_to beer.name, beer_path(beer), class: "beer-link" %></h3>
+           <p><em><%= beer.brewery %></em></p>
+           <p class="beer-style"><%= beer.style %></p>
+         </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -10,6 +10,7 @@ class BeersController < ApplicationController
 
   def new
     @beer = Beer.new
+    @hops = Hop.all
   end
 
   def create
