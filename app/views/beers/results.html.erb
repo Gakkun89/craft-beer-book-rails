@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="beer-results">
+    <% @beers.each do |beer, beer_hash| %>
+      <div class="beer-card">
+        <%= image_tag "https://cdn.beeradvocate.com/im/beers/#{beer_hash[:url]}.jpg", alt: "picture of #{beer_hash[:name]}" %>
+        <div class="beer-info">
+          <div class="beer-name">
+            <h3><%= beer_hash[:name] %></h3>
+          </div>
+          <div class="beer-brewery">
+            <p><em><%= beer_hash[:brewery] %></em></p>
+          </div>
+          <div class="beer-style">
+            <p><%= beer_hash[:style] %></p>
+          </div>
+        </div>
+        <a href="/search/results/<%= beer_hash[:url] %>" class="btn add-beer">Add Beer</a>
+      </div>
+    <% end %>
+  </div>
+</div>

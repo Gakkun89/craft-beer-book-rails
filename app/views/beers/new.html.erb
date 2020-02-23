@@ -1,18 +1,25 @@
+<div class="container">
+  <div class="ba-search">
+    <form action="/search/results" action="get">
+      <input type="text" class="form-control" name="query" placeholder="Search Beer Advocate...">
+    </form>
+  </div>
 
-<button class="btn btn-manual-form" type="button" data-toggle="collapse" data-target="#manual-form" aria-expanded="false" aria-controls="collapseExample">
-   Add Manually <i class="fas fa-beer">+</i>
-</button>
-<div class="collapse" id="manual-form">
-  <div class="beer-form">
-    <%= simple_form_for @beer do |f| %>
-      <%= f.input :name %>
-      <%= f.input :brewery %>
-      <%= f.input :style %>
-      <%= f.input :abv %>
-      <%= f.input :notes %>
-      <%= f.input :uscore %>
-      <%= f.input :photo %>
-      <%= f.submit %>
-    <% end %>
+  <button class="btn btn-manual-form" type="button" data-toggle="collapse" data-target="#manual-form" aria-expanded="false" aria-controls="collapseExample">
+   Add Manually <i class="fas fa-beer ml-2">+</i>
+  </button>
+  <div class="collapse" id="manual-form">
+    <div class="beer-form">
+      <%= simple_form_for @beer do |f| %>
+        <%= f.input :name %>
+        <%= f.input :brewery %>
+        <%= f.input :style %>
+        <%= f.input :abv %>
+        <%= f.input :notes %>
+        <%= f.input :uscore %>
+        <%= f.input :photo %>
+        <%= f.submit %>
+      <% end %>
+    </div>
   </div>
 </div>

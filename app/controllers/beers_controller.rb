@@ -39,6 +39,14 @@ class BeersController < ApplicationController
     redirect_to beers_path
   end
 
+  def results
+    @beers = BAScrapeResults.search_title_scrape(params[:query])
+  end
+
+  def add_ba
+
+  end
+
   private
 
   def set_beer
