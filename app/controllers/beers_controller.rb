@@ -44,7 +44,7 @@ class BeersController < ApplicationController
   end
 
   def add_ba
-
+    @beer = BAScrapeProfile.initialize(params[:id])
   end
 
   private

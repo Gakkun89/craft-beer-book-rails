@@ -1,1 +1,12 @@
-<h1>Test</h1>
+<div class="container">
+  <div class="beer-card-individual">
+    <%= image_tag "https://cdn.beeradvocate.com/im/beers/#{params[:id]}.jpg", alt: "#{@beer[:name]} picture" %>
+    <div class="beer-card-details">
+      <h3><%= @beer[:name] %></h3>
+      <p><em><%= @beer[:brewery] %></em></p>
+      <p class="beer-style"><%= @beer[:style] %></p>
+      <p><%= @beer[:abv] %>%</p>
+      <p><%= @beer[:bascore] %></p>
+    </div>
+  </div>
+</div>
